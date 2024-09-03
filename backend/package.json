@@ -2,12 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend for chatbot clone",
+  "type": "module",
   "scripts": {
     "start": "node ./backend.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "ollama": "^0.5.8"
   }
 }
