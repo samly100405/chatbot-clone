@@ -25,8 +25,8 @@ const userSchema = new mongoose.Schema({
 // dont you dare delete this.
 // this will hash the user's password, otherwise you are
 // storing user passwords as plaintext.
-userSchema.pre('save', async () => {
-    this.password = await bcrypt.hash(this.password, 12)
+userSchema.pre('save', function() {
+    this.password = bcrypt.hash(this.password, 12)
 })
 
 export default mongoose.model('User', userSchema)
