@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
+import mongoose from 'mongoose'
 
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -13,6 +14,8 @@ const __dirname = path.dirname(__filename)
 import indexRouter from './routes/index.js'
 import authRouter from './routes/auth.js'
 import chatsRouter from './routes/chats.js'
+
+mongoose.connect(process.env.MONGODB_URI)
 
 const app = express()
 
