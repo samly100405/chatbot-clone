@@ -1,7 +1,7 @@
 import mongoose, { SchemaType } from 'mongoose'
 
 const userSchema = new mongoose.Schema({
-    oathID: {
+    oauthID: {
         type: String,
         required: true,
         unique: true,
