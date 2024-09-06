@@ -4,9 +4,10 @@ const router = express.Router()
 
 function fetchChats(req, res, next) {
     // pretend like this gets all chats
-    // and sends to response
+    // and adds to response
     res.locals.chats = [
         {
+            id: 'some id', 
             name: 'balls',
             model: 'tinyllama',
         }
