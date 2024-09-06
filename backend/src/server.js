@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename)
 
 import indexRouter from './routes/index.js'
 import authRouter from './routes/auth.js'
+import chatsRouter from './routes/chats.js'
 
 const app = express()
 
@@ -30,6 +31,7 @@ app.use(passport.authenticate('session'))
 
 app.use('/', indexRouter)
 app.use('/', authRouter)
+app.use('/chats', chatsRouter)
 
 app.listen(process.env.SERVER_PORT, () => {
     console.log('listening on port ' + process.env.SERVER_PORT)
