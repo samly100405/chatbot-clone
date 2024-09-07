@@ -4,7 +4,8 @@ const router = express.Router()
 
 router.get('/', 
     (req, res, next) => {
-        res.render('chats')
+        if (!req.user) return res.redirect('/')
+        return res.render('chats')
     }
 )
 
