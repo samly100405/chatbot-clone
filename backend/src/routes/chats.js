@@ -1,12 +1,15 @@
 import express from 'express'
 
+import { createChat, getChats } from '../controllers/chats'
+
 const router = express.Router()
 
-router.get('/', 
+router.get('/', getChats,
     (req, res, next) => {
-        if (!req.user) return res.redirect('/')
         return res.render('chats')
     }
 )
+
+router.post('/', createChat)
 
 export default router

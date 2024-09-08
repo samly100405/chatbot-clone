@@ -16,7 +16,27 @@ async function createChat(req, res, next) {
     })
 
     user.chats.push(newChat)
+    user.save()
 
+    res.status(201).send(JSON.stringify(newChat))
+    next()
+}
+
+function getChats(req, res, next) {
+    if (!req.user) {
+        return res.status(401).send(JSON.stringify({ message: 'user must be signed in to chat'}))
+    }
+
+    userModel.findById(req.user.id)
+    .then(
+        (res) => {
+            if (!res) {
+                return res.status(404).send(JSON.stringify({ message: 'chat not found'}))
+            }
+
+            return res.status(200).send(JSON.stringify(res))
+        }
+    )
 
     next()
 }
@@ -45,4 +65,4 @@ function authorizeChat(req, res, next) {
     next()
 }
 
-export { createChat, authorizeChat }
+export { createChat, getChats, authorizeChat }
