@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    chats: [mongoose.Types.ObjectId]
+    chats: [{ type: mongoose.Types.ObjectId, ref: 'Chat'}]
 })
 
 export default mongoose.model('User', userSchema)
