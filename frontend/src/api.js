@@ -1,7 +1,9 @@
 import axios from "axios";
 
-export async function getCountries(id) {
-    const response = await axios.get(`${URL}/countryNames/${id}`)
+const URL = "http://localhost:3000"
+
+export async function getCountries() {
+    const response = await axios.get(`${URL}/countryNames`)
     if (response.status === 200) {
       return response.data
     } else {
