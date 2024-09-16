@@ -12,7 +12,6 @@ function Chat() {
         chatService.getMessages(123456)
             .then(
                 (res) => {
-                    console.log(res)
                     setMessages(res)
                 }
             )
@@ -21,10 +20,9 @@ function Chat() {
         <div className="chat">
             {
                 messages.map((elem) => {
-                    // TODO: make proper id for this key
                     return <Message role={elem.role} 
                                     text={elem.message}
-                                    key={elem.message} />
+                                    key={elem.id} />
                 })
             }
         </div>
