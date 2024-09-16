@@ -9,8 +9,7 @@ function Sidebar() {
     chatService.getChats(1)
       .then(
         (res) => {
-          console.log(res)
-          setChats(res)
+          if (res) setChats(res)
         }
       )
     
