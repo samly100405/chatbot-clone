@@ -6,7 +6,6 @@ function getChats(userID) {
     return axios.get(`${baseURL}/users/${userID}`)
             .then(
                 (res) => {
-                    console.log(res.data.chats)
                     return res.data.chats
                 }
             )
@@ -21,13 +20,12 @@ function getMessages(chatID) {
     return axios.get(`${baseURL}/histories/${chatID}`)
             .then(
                 (res) => {
-                    console.log(res.data.messages)
                     return res.data.messages
                 }
             )
             .catch(
                 (err) => {
-                    console.log(err)
+                    console.error(err)
                 }
             )
 }
