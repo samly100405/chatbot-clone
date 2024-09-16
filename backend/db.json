@@ -39,10 +39,12 @@
             "id": 123456,
             "messages": [
                 {
+                    "id": 10239761203976,
                     "role": "user",
                     "message": "hi"
                 },
                 {
+                    "id": 10259761203976,
                     "role": "assistant",
                     "message": "whats good"
                 }
