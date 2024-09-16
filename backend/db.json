@@ -5,17 +5,19 @@
             "chats": [
                 {
                     "id": 1,
+                    "name": "my chat 1",
                     "history": 1345143
+                },
+                {
+                    "id": 2,
+                    "name": "my chat 2",
+                    "history": 123456                
                 }
             ]
         },
         {
             "id": 2,
             "chats": [
-                {
-                    "id": 1,
-                    "history": 123456                
-                }
             ]
         }
     ],
