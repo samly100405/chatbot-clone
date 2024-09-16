@@ -17,7 +17,7 @@ function getChats(userID) {
             )
 }
 
-function getChatHistory(chatID) {
+function getMessages(chatID) {
     return axios.get(`${baseURL}/histories/${chatID}`)
             .then(
                 (res) => {
@@ -25,6 +25,11 @@ function getChatHistory(chatID) {
                     return res.data.messages
                 }
             )
+            .catch(
+                (err) => {
+                    console.log(err)
+                }
+            )
 }
 
-export default { getChats, getChatHistory }
+export default { getChats, getMessages }
