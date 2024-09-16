@@ -1,19 +1,43 @@
-function Sidebar({ ...props }) {
+import { useEffect, useState } from 'react'
+import chatService from '../services/chats.js'
+
+function Sidebar() {
+  const [chats, setChats] = useState([])
+
+  useEffect(() => {
+    // TODO: implement user id context
+    chatService.getChats(1)
+      .then(
+        (res) => {
+          console.log(res)
+          setChats(res)
+        }
+      )
+    
+  },[])
+
     return (
         <div className="sidebar">
-            <SidebarItem text={'mychat'} />
-            <SidebarItem text={'mychat'} />
-            <SidebarItem text={'mychat'} />
+        {
+          chats.map((elem) => {
+            return <SidebarItem text={elem.name}
+                                chatID={elem.id}
+                                key={elem.id}/>
+          })
+        }
         </div>
     )
 }
 
-function SidebarItem({ text }) {
+function SidebarItem({ text, chatID }) {
+  // TODO: Implement delete
   return (
-    <div className="sidebar-item">
-      {text}
-      <button>del</button>
-    </div>
+    <a href={`/chats/${chatID}`}>
+      <div className="sidebar-item">
+        {text}
+        <button>del</button>
+      </div>
+    </a>
   )
 }
 
