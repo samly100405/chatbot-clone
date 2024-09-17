@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import chatService from '../services/chats.js'
 
-function Sidebar() {
+function Sidebar({}) {
   const [chats, setChats] = useState([])
+  const [selectedChatID, setSelectedChatID] = useState('')
 
   useEffect(() => {
     // TODO: implement user id context
@@ -10,33 +11,33 @@ function Sidebar() {
       .then(
         (res) => {
           if (res) setChats(res)
+          setSelectedChatID(res[0].id)
         }
       )
-    
-  },[])
 
-    return (
-        <div className="sidebar">
-        {
-          chats.map((elem) => {
-            return <SidebarItem text={elem.name}
-                                chatID={elem.id}
-                                key={elem.id}/>
-          })
-        }
-        </div>
-    )
+  }, [])
+
+  return (
+    <div className="sidebar">
+      {
+        chats.map((elem) => {
+          return <SidebarItem text={elem.name}
+            setSelected={() => setSelectedChatID(elem.id)}
+            selected={elem.id === selectedChatID}
+            key={elem.id} />
+        })
+      }
+    </div>
+  )
 }
 
-function SidebarItem({ text, chatID }) {
+function SidebarItem({ text, setSelected, selected }) {
   // TODO: Implement delete
   return (
-    <a href={`/chats/${chatID}`}>
-      <div className="sidebar-item">
-        {text}
-        <button>del</button>
-      </div>
-    </a>
+    <div className="sidebar-item" onClick={setSelected}>
+      {text + selected}
+      <button>del</button>
+    </div>
   )
 }
 
