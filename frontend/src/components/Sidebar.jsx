@@ -35,9 +35,12 @@ function Sidebar({ setSelectedChat }) {
 
 function SidebarItem({ text, setSelected, selected }) {
   // TODO: Implement delete
+  const className = selected
+                    ? "sidebar-item-selected"
+                    : "sidebar-item"
   return (
-    <div className="sidebar-item" onClick={setSelected}>
-      {text + selected}
+    <div className={className} onClick={setSelected}>
+      {text}
       <button>del</button>
     </div>
   )

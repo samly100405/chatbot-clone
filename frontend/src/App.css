@@ -13,6 +13,14 @@
   padding: 1rem;
 }
 
+.sidebar-item, .sidebar-item-selected {
+  margin: 1rem;
+}
+
+.sidebar-item-selected {
+  background-color: aqua;
+}
+
 .content {
   display: flex;
   flex-direction: column;
