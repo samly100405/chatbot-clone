@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import chatService from '../services/chats.js'
+import { ChatContext } from '../contexts.js'
 
-function Sidebar({}) {
+function Sidebar({ setSelectedChat }) {
   const [chats, setChats] = useState([])
-  const [selectedChatID, setSelectedChatID] = useState('')
+
+  const chatContext = useContext(ChatContext)
 
   useEffect(() => {
     // TODO: implement user id context
@@ -11,7 +13,7 @@ function Sidebar({}) {
       .then(
         (res) => {
           if (res) setChats(res)
-          setSelectedChatID(res[0].id)
+          setSelectedChat(res[0].id)
         }
       )
 
@@ -22,8 +24,8 @@ function Sidebar({}) {
       {
         chats.map((elem) => {
           return <SidebarItem text={elem.name}
-            setSelected={() => setSelectedChatID(elem.id)}
-            selected={elem.id === selectedChatID}
+            setSelected={() => setSelectedChat(elem.id)}
+            selected={elem.id === chatContext}
             key={elem.id} />
         })
       }

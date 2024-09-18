@@ -4,7 +4,6 @@ import UserIcon from '../assets/user.png'
 import chatService from '../services/chats.js'
 
 function Chat() {
-    // TODO: add connection to db
     const [messages, setMessages] = useState([])
 
     useEffect(() => {
@@ -24,6 +23,7 @@ function Chat() {
                                     text={elem.message}
                                     key={elem.id} />
                 })
+                .reverse()
             }
         </div>
     )
