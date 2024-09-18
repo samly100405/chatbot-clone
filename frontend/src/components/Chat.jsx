@@ -1,29 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import AssistantIcon from '../assets/assistant.png'
 import UserIcon from '../assets/user.png'
 import chatService from '../services/chats.js'
+import { ChatContext } from '../contexts.js'
 
 function Chat() {
     const [messages, setMessages] = useState([])
 
+    const chatContext = useContext(ChatContext)
+
     useEffect(() => {
         // TODO: how to get chat id here? maybe context or browser
-        chatService.getMessages(123456)
-            .then(
-                (res) => {
-                    setMessages(res)
-                }
-            )
-    },[])
+        if (chatContext.id) {
+            chatService.getMessages(chatContext.id)
+                .then(
+                    (res) => {
+                        setMessages(res)
+                    }
+                )
+                .catch(
+                    (err) => {
+                        console.error(err)
+
+                    }
+                )
+        }
+    }, [chatContext])
+
     return (
         <div className="chat">
             {
                 messages.map((elem) => {
-                    return <Message role={elem.role} 
-                                    text={elem.message}
-                                    key={elem.id} />
+                    return <Message role={elem.role}
+                        text={elem.message}
+                        key={elem.id} />
                 })
-                .reverse()
+                    .reverse()
             }
         </div>
     )
