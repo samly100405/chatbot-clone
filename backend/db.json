@@ -4,12 +4,12 @@
             "id": 1,
             "chats": [
                 {
-                    "id": 1,
+                    "id": 1345143,
                     "name": "my chat 1",
                     "history": 1345143
                 },
                 {
-                    "id": 2,
+                    "id": 123456,
                     "name": "my chat 2",
                     "history": 123456                
                 }
@@ -26,6 +26,7 @@
             "id": 1345143,
             "messages": [
                 {
+                    "id": 1934876103647,
                     "role": "user",
                     "message": "hi from 1345143"
                 }
