@@ -3,9 +3,7 @@ import Sidebar from './components/Sidebar'
 import Chat from './components/Chat'
 import TextInput from './components/TextInput'
 
-
 function App() {
-
 
   return (
     <>
