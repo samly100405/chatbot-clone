@@ -13,7 +13,7 @@ function Sidebar({ setSelectedChat }) {
       .then(
         (res) => {
           if (res) setChats(res)
-          setSelectedChat(res[0].id)
+          setSelectedChat(res[0])
         }
       )
 
@@ -24,8 +24,8 @@ function Sidebar({ setSelectedChat }) {
       {
         chats.map((elem) => {
           return <SidebarItem text={elem.name}
-            setSelected={() => setSelectedChat(elem.id)}
-            selected={elem.id === chatContext}
+            setSelected={() => setSelectedChat(elem)}
+            selected={elem.id === chatContext.id}
             key={elem.id} />
         })
       }
