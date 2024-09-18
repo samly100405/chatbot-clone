@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import chatService from '../services/chats.js'
 import { ChatContext } from '../contexts.jsx'
 
 function Sidebar({}) {
   const [chats, setChats] = useState([])
   const [selectedChatID, setSelectedChatID] = useState('')
+
+  const chat = useContext(ChatContext)
 
   useEffect(() => {
     // TODO: implement user id context
