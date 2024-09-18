@@ -13,11 +13,12 @@
   padding: 1rem;
 }
 
-.sidebar-item, .sidebar-item-selected {
+.sidebar-item {
   margin: 1rem;
+  padding: 0.1rem;
 }
 
-.sidebar-item-selected {
+.sidebar-item.selected {
   background-color: aqua;
 }
 
