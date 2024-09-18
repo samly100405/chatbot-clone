@@ -29,6 +29,7 @@ function Sidebar({ setSelectedChat }) {
             key={elem.id} />
         })
       }
+      <NewChatButton />
     </div>
   )
 }
@@ -39,6 +40,14 @@ function SidebarItem({ text, setSelected, selected }) {
     <div className={'sidebar-item ' + (selected && 'selected')} onClick={setSelected}>
       {text}
       <button>del</button>
+    </div>
+  )
+}
+
+function NewChatButton({}) {
+  return (
+    <div className="sidebar-item new-chat">
+      <button>new chat +</button>
     </div>
   )
 }
