@@ -30,4 +30,32 @@ function getMessages(chatID) {
             )
 }
 
-export default { getChats, getMessages }
+function createChat(userID, chatName) {
+    return axios.patch(`${baseURL}/users/${userID}`,
+        {
+            chats: [{id: 123, name: chatName}]
+        }
+    )
+        .then(
+            (res) => {
+                console.log(res)
+                return res.data
+            }
+        )
+        .catch(
+            (err) => {
+                console.error(err)
+            }
+        )
+}
+
+function sendMessage(chatID, message) {
+    return axios.post(`${baseURL}/histories/${chatID}`)
+            .then(
+                (res) => {
+                    console.log(res)
+                }
+            )
+}
+
+export default { getChats, getMessages, sendMessage, createChat }

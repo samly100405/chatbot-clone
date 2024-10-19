@@ -1,61 +1,54 @@
 {
-    "users": [
+  "users": [
+    {
+      "id": "1",
+      "chats": [
         {
-            "id": 1,
-            "chats": [
-                {
-                    "id": 1345143,
-                    "name": "my chat 1",
-                    "history": 1345143
-                },
-                {
-                    "id": 123456,
-                    "name": "my chat 2",
-                    "history": 123456                
-                }
-            ]
+          "id": 123456,
+          "name": "ay lmao"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "chats": []
+    }
+  ],
+  "histories": [
+    {
+      "id": "1345143",
+      "messages": [
+        {
+          "id": 1934876103647,
+          "role": "user",
+          "message": "hi from 1345143"
+        }
+      ]
+    },
+    {
+      "id": "123456",
+      "messages": [
+        {
+          "id": 10239761203976,
+          "role": "user",
+          "message": "hi"
         },
         {
-            "id": 2,
-            "chats": [
-            ]
-        }
-    ],
-    "histories": [
-        {
-            "id": 1345143,
-            "messages": [
-                {
-                    "id": 1934876103647,
-                    "role": "user",
-                    "message": "hi from 1345143"
-                }
-            ]
+          "id": 10259761203976,
+          "role": "assistant",
+          "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         {
-            "id": 123456,
-            "messages": [
-                {
-                    "id": 10239761203976,
-                    "role": "user",
-                    "message": "hi"
-                },
-                {
-                    "id": 10259761203976,
-                    "role": "assistant",
-                    "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                },
-                {
-                    "id": 10239761203376,
-                    "role": "user",
-                    "message": "Lorem ipsum odor amet, consectetuer adipiscing elit. Habitant est egestas justo leo class id volutpat mus. Mus ornare convallis nulla rhoncus phasellus nisi senectus tellus. Nam orci condimentum ridiculus augue magna praesent dis. Aenean arcu vivamus parturient eros vulputate. Mollis imperdiet nulla lectus ex finibus litora. Ipsum dis lobortis vestibulum sagittis elit."
-                },
-                {
-                    "id": 1259761203976,
-                    "role": "assistant",
-                    "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                }
-            ]
+          "id": 10239761203376,
+          "role": "user",
+          "message": "Lorem ipsum odor amet, consectetuer adipiscing elit. Habitant est egestas justo leo class id volutpat mus. Mus ornare convallis nulla rhoncus phasellus nisi senectus tellus. Nam orci condimentum ridiculus augue magna praesent dis. Aenean arcu vivamus parturient eros vulputate. Mollis imperdiet nulla lectus ex finibus litora. Ipsum dis lobortis vestibulum sagittis elit."
+        },
+        {
+          "id": 1259761203976,
+          "role": "assistant",
+          "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
-    ]
+      ]
+    }
+  ]
 }

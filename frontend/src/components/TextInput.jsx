@@ -1,10 +1,13 @@
+import chatService from '../services/chats.js'
+
 function TextInput() {
+    
     return (
         <div className="text-input-container">
             <div className="text-input">
-                <form action="submit">
+                <form action={""}>
                     <input type="text" />
-                    <button>send</button>
+                    <button type="submit">send</button>
                 </form>
             </div>
         </div>

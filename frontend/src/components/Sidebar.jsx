@@ -44,10 +44,17 @@ function SidebarItem({ text, setSelected, selected }) {
   )
 }
 
+// make new chat a form
 function NewChatButton({}) {
   return (
     <div className="sidebar-item new-chat">
-      <button>new chat +</button>
+      <button onClick={
+        (event) => {
+          chatService.createChat(1, "ay lmao")
+        }
+      }>
+        new chat +
+      </button>
     </div>
   )
 }
