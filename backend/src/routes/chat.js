@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { createChat, getChats, deleteChat, authorizeChat } from '../controllers/chat.js'
+import { authorizeChat, createChat, getChats, deleteChat, sendMessage } from '../controllers/chat.js'
 
 const router = express.Router()
 
@@ -10,6 +10,8 @@ router.get('/', getChats)
 
 router.post('/', createChat)
 
-router.delete('/', deleteChat)
+router.delete('/:chatID', deleteChat)
+
+router.post('/:chatID', sendMessage)
 
 export default router
