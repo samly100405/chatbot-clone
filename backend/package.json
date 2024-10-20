@@ -1,15 +1,21 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx json-server --port 3001 --watch db.json"
+    "dev": "nodemon src/server.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "json-server": "^1.0.0-beta.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
   }
 }
