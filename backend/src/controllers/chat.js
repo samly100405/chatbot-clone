@@ -91,16 +91,25 @@ async function sendMessage(req, res, next) {
     .then(
         (result) => {
             // TODO: fix race condition here
-            // If someone "spams" the chat,
-            // a new message will cause this code to
-            // save while another thread is still writing to the db
+            // If someone "spams" the chat, the db will become desynced
+            // somehow need to prevent the server from running the inference
             result.save()
-            res.end()
+            .then(
+                (result) => {
+                    res.end()
+                }
+            )
+            .catch(
+                (error) => {
+                    console.error(error)
+                    res.status(409).end()
+                }
+            )
         }
     )
     .catch(
         (error) => {
-            res.status(404)
+            res.status(404).end()
         }
     )
 }
