@@ -1,0 +1,23 @@
+GET http://localhost:3000/chat/
+
+###
+
+POST http://localhost:3000/chat/
+Content-Type: application/json
+
+{
+    "name": "my-chat",
+    "model": "tinyllama",
+    "owner": "0"
+}
+
+###
+
+DELETE http://localhost:3000/chat/
+Content-Type: application/json
+
+{
+    "name": "my-chat",
+    "model": "tinydolphin",
+    "owner": "0"
+}
