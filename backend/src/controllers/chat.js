@@ -1,5 +1,15 @@
 import Chat from '../models/chat.js'
 
+// req param must have chat id
+function authorizeChat(req, res, next) {
+    // TODO: implement passport js
+    // if (!req.user) {
+    //     return res.status(401).send(JSON.stringify({ message: 'user must be signed in to chat' }))
+    // }
+
+    next();
+}
+
 // req body must contain a new chat name, and model
 function createChat(req, res, next) {
     console.log(req.body)
@@ -30,29 +40,14 @@ function getChats(req, res, next) {
 }
 
 function deleteChat(req, res, next) {
-    // TODO: make deleteChat use chatID from params
-    Chat.deleteOne({ name: req.body.name })
+    Chat.findByIdAndDelete(req.params.chatID)
     .then(
         (result) => {
-            res.json(result)
-        }
-    )
-    .catch(
-        (err) => {
-            console.error(err)
-            res.status(400).send(err)
+            if (result) res.json(result)
+            else  res.status(404).send("this chat is not found")
         }
     )
 }
 
-// req param must have chat id
-function authorizeChat(req, res, next) {
-    // TODO: implement passport js
-    // if (!req.user) {
-    //     return res.status(401).send(JSON.stringify({ message: 'user must be signed in to chat' }))
-    // }
 
-    next();
-}
-
-export { createChat, getChats, authorizeChat, deleteChat }
+export { authorizeChat, createChat, getChats, deleteChat }
