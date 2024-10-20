@@ -30,7 +30,7 @@ function getChats(req, res, next) {
 }
 
 function deleteChat(req, res, next) {
-    // TODO: make deleteChat use chatID
+    // TODO: make deleteChat use chatID from params
     Chat.deleteOne({ name: req.body.name })
     .then(
         (result) => {
