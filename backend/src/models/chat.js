@@ -1,16 +1,16 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose'
+
+const messageSchema = new mongoose.Schema({
+    role: { type: String, enum: ['system', 'user', 'assistant'] },
+    content: String,
+}, { _id: false })
 
 const chatSchema = new mongoose.Schema({
     name: String,
     model: { type: String, enum: ['tinyllama', 'tinydolphin'] },
     owner: { type: String, required: true },
 
-    messages: [
-        {
-            role: { type: String, enum: ['system', 'user', 'assistant'] },
-            content: String,
-        }
-    ]
+    messages: [messageSchema]
 })
 
 export default mongoose.model('Chat', chatSchema)
