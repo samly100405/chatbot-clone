@@ -50,6 +50,7 @@ function deleteChat(req, res, next) {
     )
 }
 
+// TODO: refactor send message controller
 async function sendMessage(req, res, next) {
     Chat.findById(req.params.chatID).exec()
     .then(
