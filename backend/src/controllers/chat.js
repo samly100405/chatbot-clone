@@ -40,6 +40,20 @@ function getChats(req, res, next) {
     )
 }
 
+function getChat(req, res, next) {
+    Chat.findById(req.params.chatID)
+    .then(
+        (result) => {
+            res.json(result)
+        }
+    )
+    .catch(
+        (error) => {
+            res.status(404).end()
+        }
+    )
+}
+
 function deleteChat(req, res, next) {
     Chat.findByIdAndDelete(req.params.chatID)
     .then(
@@ -116,4 +130,4 @@ async function sendMessage(req, res, next) {
 }
 
 
-export { authorizeChat, createChat, getChats, deleteChat, sendMessage }
+export { authorizeChat, createChat, getChats, getChat, deleteChat, sendMessage }
