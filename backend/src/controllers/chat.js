@@ -32,7 +32,7 @@ function createChat(req, res, next) {
 
 function getChats(req, res, next) {
     // TODO: make getChats query for user
-    Chat.find({})
+    Chat.find({}, '-messages -owner')
     .then(
         (result) => {
             res.json(result)
