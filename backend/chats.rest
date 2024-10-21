@@ -2,7 +2,7 @@ GET http://localhost:3000/chat/
 
 ###
 
-GET http://localhost:3000/chat/67156c567af40a44cbc1f53
+GET http://localhost:3000/chat/67156c567af40a44cbc1f530
 
 ###
 
