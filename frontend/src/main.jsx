@@ -12,7 +12,6 @@ import NewChatPage from './pages/NewChatPage'
 import { loader as chatLoader } from './pages/ChatPage'
 import { loader as chatsLoader } from './App'
 import { action as newChatAction } from './pages/NewChatPage'
-import { action as newMessageAction } from './pages/ChatPage'
 
 const router = createBrowserRouter([
   {
@@ -30,7 +29,6 @@ const router = createBrowserRouter([
         path: 'chat/:chatID',
         element: <ChatPage />,
         loader: chatLoader,
-        action: newMessageAction,
       },
     ]
   },

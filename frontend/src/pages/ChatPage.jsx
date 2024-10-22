@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Form, useActionData, useLoaderData } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 
 import UserIcon from "../assets/user.png"
 import AssistantIcon from "../assets/assistant.png"
@@ -10,25 +10,18 @@ export async function loader({ params }) {
     return await getChat(params.chatID)
 }
 
-export async function action({ params, request }) {
-    const formData = await request.formData()
-    const messages = sendMessage(params.chatID, formData.get('message'))
-    return await messages
-}
 
 export default function ChatPage() {
     const chat = useLoaderData()
-    const message = useActionData()
-    console.log('message', message)
-    
-    const [incoming, setIncoming] = useState('')
-    const incomingMessage = <Message role="assistant" text={incoming} />
+    const [messages, setMessages] = useState(chat.messages) 
 
-    if (message) message.then(
-        (res) => {
-            console.log(res)
-        }
-    )
+    function handleSubmit(event) {
+        const message = event.get('message')
+        console.log(messages)
+        setMessages([...messages, { role: 'user', content: message}])
+
+        // push a new message that is the stream
+    }
 
     return (
         <>
@@ -39,22 +32,19 @@ export default function ChatPage() {
                 </div>
                 <div className="chat">
                     {
-                        chat.messages.map(elem => {
+                        messages.reverse().map(elem => {
                             return <Message role={elem.role}
                                 text={elem.content}
                                 key={elem.id} />
-                        }).reverse()
-                    }
-                    {
-                        incomingMessage
+                        })
                     }
                 </div>
                 <div className="text-input-container">
                     <div className="text-input">
-                        <Form method="post" id="text-input-form">
+                        <form action={handleSubmit}>
                             <input type="text" name="message"/>
-                            <button type="submit">Send</button>
-                        </Form>
+                            <button>send</button>
+                        </form>
                     </div>
                 </div>
             </div>
