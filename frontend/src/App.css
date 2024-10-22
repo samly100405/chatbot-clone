@@ -18,7 +18,7 @@
   padding: 0.1rem;
 }
 
-.sidebar-item.selected {
+.selected {
   background-color: aqua;
 }
 

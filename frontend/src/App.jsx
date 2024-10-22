@@ -10,9 +10,9 @@ export default function App() {
   const chats = useLoaderData()
 
   return (
-        <>
-            <Sidebar chats={chats}></Sidebar>
-            <Outlet />
-        </>
+    <>
+      <Sidebar chats={chats}></Sidebar>
+      <Outlet />
+    </>
   )
 }

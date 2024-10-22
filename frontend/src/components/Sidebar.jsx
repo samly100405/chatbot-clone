@@ -1,38 +1,42 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 export default function Sidebar({ chats }) {
     const [selected, setSelected] = useState(chats[0]._id)
 
     return (
         <div className="sidebar">
-            {
-                chats.map(
-                    elem => {
-                        return <SidebarItem
-                            text={elem.name}
-                            setSelected={() => setSelected(elem._id)}
-                            selected={elem._id === selected}
-                            id={elem._id}
-                            key={elem._id}
-                        />
-                    }
-                )
-            }
+            <ul>
+                {
+                    chats.map(
+                        elem => {
+                            console.log(elem)
+                            return (
+
+                                <li className="sidebar-item">
+                                    <NavLink to={`/chat/${elem._id}`}
+                                        className={({ isActive }) => isActive ? "selected" : ""}>
+                                        {elem.name}
+                                    </NavLink>
+                                </li>
+
+                            )
+                        }
+                    )
+                }
+
+            </ul>
             <NewChatButton />
         </div>
     )
 }
 
-function SidebarItem({ text, setSelected, selected, id }) {
+function SidebarItem({ text }) {
     // TODO: Implement delete
     return (
-        <Link to={`chat/${id}`}>
-            <div className={'sidebar-item ' + (selected && 'selected')} onClick={setSelected}>
-                {text}
-                <button>del</button>
-            </div>
-        </Link>
+        <div className={'sidebar-item '}>
+            {text}
+        </div>
     )
 }
 

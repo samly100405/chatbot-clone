@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom"
+import { Form, redirect } from "react-router-dom"
 import { createChat } from "../services/chats"
 
 export default function NewChatPage() {
@@ -25,6 +25,6 @@ export default function NewChatPage() {
 
 export async function action({ request }) {
     const formData = await request.formData()
-    const formObject = Object.fromEntries(formData)
-    return await createChat(formObject.name, formObject.model)
+    const chat = await createChat(formData.get('name'), formData.get('model'))
+    return redirect(`/chat/${chat._id}`)
 }
