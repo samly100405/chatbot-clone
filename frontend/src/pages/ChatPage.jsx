@@ -12,8 +12,16 @@ export async function loader({ params }) {
 
 
 export default function ChatPage() {
+    // whyyyyyyy
     const chat = useLoaderData()
     const [messages, setMessages] = useState(chat.messages) 
+
+    // Problem:
+    // useLoaderData acts as it's own "hook",
+    // it mutates the data for this page "in place"
+    // when navigating using browser router, it doesn't rerender
+    // this component.
+    // this means that the useState is not rerun when it is mutated
 
     function handleSubmit(event) {
         const message = event.get('message')
@@ -32,7 +40,7 @@ export default function ChatPage() {
                 </div>
                 <div className="chat">
                     {
-                        messages.reverse().map(elem => {
+                        chat.messages.reverse().map(elem => {
                             return <Message role={elem.role}
                                 text={elem.content}
                                 key={elem.id} />
