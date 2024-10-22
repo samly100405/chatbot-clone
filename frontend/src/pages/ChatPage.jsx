@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Form, useActionData, useLoaderData } from "react-router-dom"
 
 import UserIcon from "../assets/user.png"
@@ -11,13 +12,23 @@ export async function loader({ params }) {
 
 export async function action({ params, request }) {
     const formData = await request.formData()
-    return await sendMessage(params.chatID, formData.get('message'))
+    const messages = sendMessage(params.chatID, formData.get('message'))
+    return await messages
 }
 
 export default function ChatPage() {
     const chat = useLoaderData()
     const message = useActionData()
-    console.log(message)
+    console.log('message', message)
+    
+    const [incoming, setIncoming] = useState('')
+    const incomingMessage = <Message role="assistant" text={incoming} />
+
+    if (message) message.then(
+        (res) => {
+            console.log(res)
+        }
+    )
 
     return (
         <>
@@ -33,6 +44,9 @@ export default function ChatPage() {
                                 text={elem.content}
                                 key={elem.id} />
                         }).reverse()
+                    }
+                    {
+                        incomingMessage
                     }
                 </div>
                 <div className="text-input-container">
