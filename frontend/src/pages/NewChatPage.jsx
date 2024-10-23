@@ -11,12 +11,11 @@ export default function NewChatPage() {
                     name="name"
                 />
                 <select name="model" id="model-select">
-                    <option value="tinyllama">tinyllama</option>
                     <option value="tinydolphin">tinydolphin</option>
+                    <option value="tinyllama">tinyllama</option>
                 </select>
                 <p>
                     <button type="submit">Save</button>
-                    <button type="button">Cancel</button>
                 </p>
             </Form>
         </>
