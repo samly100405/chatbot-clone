@@ -35,7 +35,11 @@ export default function ChatPage() {
         // why does this shit not appear immediately????
         setMessages([...messages, { role: 'user', content: userMessage }])
 
-        const res = await sendMessage(chat._id, userMessage)
+        wrap(userMessage)
+    }
+
+    async function wrap(message) {
+        const res = await sendMessage(chat._id, message)
         const reader = res.body.getReader()
         const decoder = new TextDecoder()
 
