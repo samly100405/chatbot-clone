@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const messageSchema = new mongoose.Schema({
     role: { type: String, enum: ['system', 'user', 'assistant'] },
     content: String,
-}, { _id: false })
+})
 
 const chatSchema = new mongoose.Schema({
     name: String,

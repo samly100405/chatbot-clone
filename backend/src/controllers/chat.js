@@ -32,10 +32,24 @@ function createChat(req, res, next) {
 
 function getChats(req, res, next) {
     // TODO: make getChats query for user
-    Chat.find({})
+    Chat.find({}, '-messages -owner')
     .then(
         (result) => {
             res.json(result)
+        }
+    )
+}
+
+function getChat(req, res, next) {
+    Chat.findById(req.params.chatID)
+    .then(
+        (result) => {
+            res.json(result)
+        }
+    )
+    .catch(
+        (error) => {
+            res.status(404).end()
         }
     )
 }
@@ -116,4 +130,4 @@ async function sendMessage(req, res, next) {
 }
 
 
-export { authorizeChat, createChat, getChats, deleteChat, sendMessage }
+export { authorizeChat, createChat, getChats, getChat, deleteChat, sendMessage }

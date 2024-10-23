@@ -1,62 +1,52 @@
-import { useContext, useEffect, useState } from 'react'
-import chatService from '../services/chats.js'
-import { ChatContext } from '../contexts.js'
+import { Link, NavLink, useNavigate, useParams, useRevalidator } from "react-router-dom"
+import { deleteChat } from "../services/chats"
 
-function Sidebar({ setSelectedChat }) {
-  const [chats, setChats] = useState([])
+export default function Sidebar({ chats }) {
+    const navigate = useNavigate()
+    const { chatID } = useParams()
+    const revalidator = useRevalidator()
 
-  const chatContext = useContext(ChatContext)
+    return (
+        <div className="sidebar">
+            <ul>
+                {
+                    chats.map(
+                        elem => {
+                            return (
 
-  useEffect(() => {
-    // TODO: implement user id context
-    chatService.getChats(1)
-      .then(
-        (res) => {
-          if (res) setChats(res)
-          setSelectedChat(res[0])
-        }
-      )
+                                <li className="sidebar-item" key={elem._id}>
+                                    <NavLink to={`/chat/${elem._id}`}
+                                        className={({ isActive }) => isActive ? "selected" : ""}>
+                                        {elem.name}
+                                    </NavLink>
+                                    <button onClick={async () => {
+                                        deleteChat(elem._id)
+                                        .then(
+                                            (res) => {
+                                                if (chatID === res._id) navigate('/chat')
+                                                revalidator.revalidate()
+                                            }
+                                        )
+                                    }}>delete</button>
+                                </li>
 
-  }, [])
+                            )
+                        }
+                    )
+                }
 
-  return (
-    <div className="sidebar">
-      {
-        chats.map((elem) => {
-          return <SidebarItem text={elem.name}
-            setSelected={() => setSelectedChat(elem)}
-            selected={elem.id === chatContext.id}
-            key={elem.id} />
-        })
-      }
-      <NewChatButton />
-    </div>
-  )
+            </ul>
+            <NewChatButton />
+        </div>
+    )
 }
 
-function SidebarItem({ text, setSelected, selected }) {
-  // TODO: Implement delete
-  return (
-    <div className={'sidebar-item ' + (selected && 'selected')} onClick={setSelected}>
-      {text}
-      <button>del</button>
-    </div>
-  )
-}
-
-// make new chat a form
 function NewChatButton({}) {
-  return (
-    <div className="sidebar-item new-chat">
-      <button onClick={
-        (event) => {
-          chatService.createChat(1, "ay lmao")
-        }
-      }>
-        new chat +
-      </button>
-    </div>
-  )
+    return (
+        <Link to="/chat">
+            <div className="sidebar-item new-chat">
+                <button>new chat +</button>
+            </div>
+        </Link>
+    )
 }
-
-export default Sidebar

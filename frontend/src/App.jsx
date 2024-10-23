@@ -1,27 +1,18 @@
+import { Outlet, useLoaderData } from 'react-router-dom'
 import './App.css'
 import Sidebar from './components/Sidebar'
-import Chat from './components/Chat'
-import TextInput from './components/TextInput'
-import Header from './components/Header'
+import { getChats } from './services/chats'
 
-import { ChatContext } from './contexts'
-import { useState } from 'react'
-
-function App() {
-  const [selectedChat, setSelectedChat] = useState('')
+export async function loader() {
+  return await getChats()
+}
+export default function App() {
+  const chats = useLoaderData()
 
   return (
     <>
-      <ChatContext.Provider value={selectedChat}>
-        <Sidebar setSelectedChat={setSelectedChat}/>
-        <div className="content">
-          <Header />
-          <Chat />
-          <TextInput />
-        </div>
-      </ChatContext.Provider>
+      <Sidebar chats={chats}></Sidebar>
+      <Outlet />
     </>
   )
 }
-
-export default App
