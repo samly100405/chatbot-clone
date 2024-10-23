@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useLoaderData } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { redirect, useLoaderData } from "react-router-dom"
 
 import UserIcon from "../assets/user.png"
 import AssistantIcon from "../assets/assistant.png"
@@ -14,7 +14,8 @@ export async function loader({ params }) {
 export default function ChatPage() {
     // whyyyyyyy
     const chat = useLoaderData()
-    const [messages, setMessages] = useState(chat.messages) 
+    const [messages, setMessages] = useState([]) 
+    const [incoming, setIncoming] = useState('')
 
     // Problem:
     // useLoaderData acts as it's own "hook",
@@ -22,13 +23,28 @@ export default function ChatPage() {
     // when navigating using browser router, it doesn't rerender
     // this component.
     // this means that the useState is not rerun when it is mutated
+    useEffect(() => {
+        setMessages(chat.messages)
+        setIncoming('')
+    }, [chat])
 
-    function handleSubmit(event) {
-        const message = event.get('message')
-        console.log(messages)
-        setMessages([...messages, { role: 'user', content: message}])
+    async function handleSubmit(event) {
+        const userMessage = event.get('message')
+        // why does this shit not appear immediately????
+        setMessages([...messages, { role: 'user', content: userMessage }])
 
-        // push a new message that is the stream
+        const res = await sendMessage(chat._id, userMessage)
+        const reader = res.body.getReader()
+        const decoder = new TextDecoder()
+
+        while (true) {
+            const { value, done } = await reader.read()
+            if (done) break
+
+            const decodedChunk = decoder.decode(value, {stream: true})
+            setIncoming(val => val + decodedChunk)
+        }
+        redirect(`/chat/${chat._id}`)
     }
 
     return (
@@ -40,11 +56,14 @@ export default function ChatPage() {
                 </div>
                 <div className="chat">
                     {
-                        chat.messages.reverse().map(elem => {
+                        incoming && <Message text={incoming} role='assistant' />
+                    }
+                    {
+                        messages.map(elem => { 
                             return <Message role={elem.role}
                                 text={elem.content}
                                 key={elem.id} />
-                        })
+                        }).reverse()
                     }
                 </div>
                 <div className="text-input-container">

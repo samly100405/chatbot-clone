@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 
 export default function Sidebar({ chats }) {
-    const [selected, setSelected] = useState(chats[0]._id)
 
     return (
         <div className="sidebar">
@@ -10,10 +9,9 @@ export default function Sidebar({ chats }) {
                 {
                     chats.map(
                         elem => {
-                            console.log(elem)
                             return (
 
-                                <li className="sidebar-item">
+                                <li className="sidebar-item" key={elem._id}>
                                     <NavLink to={`/chat/${elem._id}`}
                                         className={({ isActive }) => isActive ? "selected" : ""}>
                                         {elem.name}

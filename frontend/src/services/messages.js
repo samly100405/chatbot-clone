@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { baseURL } from './constants'
 
-async function sendMessage(chatID, message) {
+export async function sendMessage(chatID, message) {
     // return axios.post(
     //     `${baseURL}/chat/${chatID}`,
     //     {
@@ -14,17 +14,21 @@ async function sendMessage(chatID, message) {
     //         return result.data
     //     }
     // )
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
     const response = await fetch(
         `${baseURL}/chat/${chatID}`,
         {
-            method: 'POST',
+            method: "POST",
             body: JSON.stringify({ message: message }),
-        }
+            headers: headers,
+          }
     )
     
-    console.log(response.body)
+    console.log("service", response.body)
 
-    return getIterableStream(response.body)
+    return response
 }
 
 async function* getIterableStream(body) {
@@ -40,5 +44,3 @@ async function* getIterableStream(body) {
         yield decodedChunk
     }
 }
-
-export { sendMessage }
