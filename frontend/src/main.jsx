@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     loader: chatsLoader,
     children: [
       {
-        path: 'new-chat/',
+        path: 'chat/',
         element: <NewChatPage />,
         action: newChatAction,
       },
