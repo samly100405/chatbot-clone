@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { baseURL } from './constants'
 
+axios.defaults.headers.common['ngrok-skip-browser-warning'] = 1
+
 function getChats() {
     return axios.get(`${baseURL}/chat`)
         .then(

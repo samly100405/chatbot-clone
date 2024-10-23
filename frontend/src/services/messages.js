@@ -16,6 +16,7 @@ export async function sendMessage(chatID, message) {
     // )
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
+    headers.append("ngrok-skip-browser-warning", '1')
 
     const response = await fetch(
         `${baseURL}/chat/${chatID}`,
@@ -29,18 +30,4 @@ export async function sendMessage(chatID, message) {
     console.log("service", response.body)
 
     return response
-}
-
-async function* getIterableStream(body) {
-    const reader = body.getReader()
-    const decoder = new TextDecoder()
-
-    while (true) {
-        const { value, done } = await reader.read()
-        if (done) {
-            break
-        }
-        const decodedChunk = decoder.decode(value, { stream: true })
-        yield decodedChunk
-    }
 }
