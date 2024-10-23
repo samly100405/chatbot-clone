@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { redirect, useLoaderData } from "react-router-dom"
+import { redirect, useLoaderData, useRevalidator } from "react-router-dom"
 
 import UserIcon from "../assets/user.png"
 import AssistantIcon from "../assets/assistant.png"
@@ -16,6 +16,7 @@ export default function ChatPage() {
     const chat = useLoaderData()
     const [messages, setMessages] = useState([]) 
     const [incoming, setIncoming] = useState('')
+    const revalidator = useRevalidator()
 
     // Problem:
     // useLoaderData acts as it's own "hook",
@@ -29,6 +30,7 @@ export default function ChatPage() {
     }, [chat])
 
     async function handleSubmit(event) {
+        console.log(event)
         const userMessage = event.get('message')
         // why does this shit not appear immediately????
         setMessages([...messages, { role: 'user', content: userMessage }])
@@ -44,7 +46,7 @@ export default function ChatPage() {
             const decodedChunk = decoder.decode(value, {stream: true})
             setIncoming(val => val + decodedChunk)
         }
-        redirect(`/chat/${chat._id}`)
+        revalidator.revalidate()
     }
 
     return (
