@@ -35,6 +35,8 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+      - name: Move to frontend directory
+        run: cd frontend
       - name: Install dependencies
         run: npm ci
       - name: Build
